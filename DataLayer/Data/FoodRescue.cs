@@ -137,6 +137,7 @@ namespace DataLayer.Data
             };
             ctx.Orders.AddRange(orders);
             ctx.SaveChanges();
+            ctx.SaveChanges();
         }
     }
 }

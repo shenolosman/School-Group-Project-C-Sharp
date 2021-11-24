@@ -1,10 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
 
+﻿using DataLayer.Backend;
 using FoodRescue_Projekt;
 
-Console.WriteLine("Hello, World!");
-AdminFrontend admin=new AdminFrontend();
+var adminBackend = new AdminBackend();
+var customerclient = new CustomerClient();
+
+adminBackend.PrepDatabase();
+
+customerclient.client();
+
+
+//AdminFrontend admin=new AdminFrontend();
 //admin.ResetDatabase();
 //admin.AllUser();
 //admin.AddRestaurant();
 //admin.AllRestaurant();
+
