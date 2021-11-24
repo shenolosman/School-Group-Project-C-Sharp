@@ -13,7 +13,7 @@ namespace DataLayer.Backend
 {
     public class AdminBackend
     {
-        public void PrepDatabase()
+        public static void PrepDatabase()
         {
             using var ctx = new FoodRescue();
 
