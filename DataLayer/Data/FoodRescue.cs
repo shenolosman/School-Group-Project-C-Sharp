@@ -50,12 +50,12 @@ namespace DataLayer.Data
 
             var users = new User[]
             {
-                new() {Username = "KevinJ", Password = "Pass123", EmailAddress = "john@gmail.com"},
-                new() {Username = "Hanna", Password = "Hund", EmailAddress = "joh@gmail.com"},
-                new() {Username = "Kajsa", Password = "Katt", EmailAddress = "Kajsa@hotmail.com"},
-                new() {Username = "Emmy", Password = "Password", EmailAddress = "EmmyP@gmail.com"},
-                new() {Username = "Klara", Password = "SweetCat", EmailAddress = "Klara@utb.ecutbildning.se"},
-                new() {Username = "Sandra", Password = "Pass123", EmailAddress = "Sandras@gmail.com"},
+                new() {Username = "KevinJ", Password = "Pass123", EmailAddress = "john@gmail.com",IsAdmin = false},
+                new() {Username = "Hanna", Password = "Hund", EmailAddress = "joh@gmail.com",IsAdmin = true},
+                new() {Username = "Kajsa", Password = "Katt", EmailAddress = "Kajsa@hotmail.com",IsAdmin = false},
+                new() {Username = "Emmy", Password = "Password", EmailAddress = "EmmyP@gmail.com",IsAdmin = false},
+                new() {Username = "Klara", Password = "SweetCat", EmailAddress = "Klara@utb.ecutbildning.se",IsAdmin = false},
+                new() {Username = "Sandra", Password = "Pass123", EmailAddress = "Sandras@gmail.com",IsAdmin = false},
             };
 
             ctx.Users.AddRange(users);
@@ -77,7 +77,7 @@ namespace DataLayer.Data
             {
                 new()
                 {
-                    FoodType = "Vego", FoodBox = "Smörgås", Price = 39, ExpiryDate = DateTime.Today + TimeSpan.FromDays(2), 
+                    FoodType = "Vego", FoodBox = "Smörgås", Price = 39, ExpiryDate = DateTime.Today + TimeSpan.FromDays(2),
                     Restaurant = restaurants[0]
 
                 },
@@ -142,4 +142,3 @@ namespace DataLayer.Data
     }
 }
 
-           

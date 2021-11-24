@@ -2,5 +2,11 @@
 
 public class RestaurantFrontend
 {
+    public void Restaurant()
+    {
+
+
+
+    }
 
 }
