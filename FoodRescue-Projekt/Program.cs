@@ -1,3 +1,4 @@
+
 ﻿using DataLayer.Backend;
 using FoodRescue_Projekt;
 
@@ -7,3 +8,11 @@ var customerclient = new CustomerClient();
 adminBackend.PrepDatabase();
 
 customerclient.client();
+
+
+//AdminFrontend admin=new AdminFrontend();
+//admin.ResetDatabase();
+//admin.AllUser();
+//admin.AddRestaurant();
+//admin.AllRestaurant();
+
