@@ -52,6 +52,7 @@ namespace FoodRescue_Projekt
                     Console.Clear();
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("[1]: View Products [2]: View purchase history");
                         cki = Console.ReadKey();
                         if (cki.Key == ConsoleKey.Backspace)
@@ -87,19 +88,55 @@ namespace FoodRescue_Projekt
                         {
                             Console.Clear();
                             var FoodBoxList = UserBackend.AllUnsoldFoodBoxes();
-                            foreach (var box in FoodBoxList)
+                            if (FoodBoxList.Count > 0)
                             {
-                                var name = box.FoodBox;
-                                while (name.Length < 25)
+                                int i = 0;
+                                foreach (var box in FoodBoxList)
                                 {
-                                    name += " ";
-                                }
+                                    i++;
+                                    var name = box.FoodBox;
+                                    while (name.Length < 25)
+                                    {
+                                        name += " ";
+                                    }
 
-                                Console.WriteLine($"{name} \t| {box.Price}kr \t| {box.ExpiryDate} \t|");
+                                    Console.WriteLine($"{i}. | {name} \t| {box.Price}kr \t| {box.ExpiryDate} \t|");
+                                }
+                                Console.WriteLine("Press BACKSPACE to go back");
+                                Console.WriteLine("Press the number of the foodbox you wish to purchase");
+                                cki = Console.ReadKey();
+                                int buyme;
+                                var isint = int.TryParse(cki.KeyChar.ToString(), out buyme);
+                                if (isint)
+                                {
+                                    if (buyme != null)
+                                    {
+                                        try
+                                        {
+                                            int BoxId = FoodBoxList[buyme - 1].FoodOrderId;
+                                            UserBackend.BuyFoodBox(username, BoxId);
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine($"No foodbox with the number {buyme} exists...");
+                                            Console.ResetColor();
+                                            Thread.Sleep(1000);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("There are no foodboxes in stock at the moment!");
+                                Console.ResetColor();
+                                Console.WriteLine("Try again later...");
+                                Thread.Sleep(1000);
+                                break;
                             }
 
-                            Console.WriteLine("Press the number of the foodbox you wish to purchase");
-                            cki = Console.ReadKey();
                         } while (cki.Key != ConsoleKey.Backspace);
                     }
 
