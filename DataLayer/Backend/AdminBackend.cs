@@ -13,7 +13,7 @@ namespace DataLayer.Backend
 {
     public class AdminBackend
     {
-        public static void PrepDatabase()
+        public void PrepDatabase()
         {
             using var ctx = new FoodRescue();
 
@@ -25,20 +25,15 @@ namespace DataLayer.Backend
         }
 
         //Visar alla användare som finns
-        public static List<object> AllUsers()
+        public static List<User> AllUsers()
         {
             using var ctx = new FoodRescue();
 
-            var query = ctx.Users
-                .Select(c => new
-                {
-                    Name = c.Username,
-                    password = c.Password,
-                    Email = c.EmailAddress
+            var query = ctx
+                .Users
+                .ToList();
 
-                });
-            var list = new List<object>();
-            foreach (var q in query) list.Add(q);
+            var list = query;
             return list;
         }
 
