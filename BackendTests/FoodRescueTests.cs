@@ -31,5 +31,18 @@ namespace BackendTests
             Assert.False(food.Find(box => box.FoodBox == "Smörgås med kalkon") != null);
             Assert.False(food.Find(box => box.FoodBox == "Falafel") != null);
         }
+
+        // Testet visar att Hannas köp gått igenom
+        [Fact]
+        public void UserPurchaseHistoryTest()
+        {
+            AdminBackend.PrepDatabase();
+
+            var purchaseHistory = UserBackend.UserPurchaseHistory("Hanna");
+
+            Assert.True(purchaseHistory.Find(box => box.FoodBox == "Oxfilepasta") != null);
+            Assert.False(purchaseHistory.Find(box => box.FoodBox == "Wrap med grönsaker") != null);
+
+        }
     }
 }
