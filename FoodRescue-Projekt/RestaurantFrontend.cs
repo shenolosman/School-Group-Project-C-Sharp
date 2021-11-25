@@ -37,6 +37,7 @@ public class RestaurantFrontend
                 Console.WriteLine("User does not exist...");
                 Console.ResetColor();
                 Thread.Sleep(1000);
+                break;
             }
 
             loggedin = UserNameList.Contains(username);
@@ -70,7 +71,6 @@ public class RestaurantFrontend
                             }
                         } while (true);
                     }
-
                     if (loggedin == false)
                     {
                         break;
@@ -91,6 +91,7 @@ public class RestaurantFrontend
                         Console.WriteLine("\n\tEnter a restaurant you want to see sold lunch boxes for:\t");
                         var restaurant = Console.ReadLine();
                         Console.Clear();
+
                         var restaurantsList = RestaurantBackend.AllSoldFoodBoxes(restaurant);
                         if (restaurantsList.Count > 0)
                         {
@@ -101,11 +102,9 @@ public class RestaurantFrontend
                             }
                         }
 
-
                         Console.WriteLine("Press BACKSPACE to go back");
                         cki = Console.ReadKey();
-
-                    } while (cki.Key is not ((ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.D3 or ConsoleKey.Escape)));
+                    } while (cki.Key != ConsoleKey.Backspace);
                 }
 
                 if (cki.Key == ConsoleKey.D2)
@@ -134,9 +133,7 @@ public class RestaurantFrontend
                             Console.WriteLine("Press BACKSPACE to go back");
                             cki = Console.ReadKey();
                         }
-                    } while (cki.Key is not ((ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.D3
-                             or ConsoleKey.Escape)));
-
+                    } while (cki.Key != ConsoleKey.Backspace);
                 }
 
                 if (cki.Key == ConsoleKey.D3)
@@ -171,29 +168,21 @@ public class RestaurantFrontend
                         {
                             Console.WriteLine("New food box was added to the restaurant");
                         }
-                        else
-                        {
-                            Console.WriteLine("You were not able to add a new food box, Please try again!");
-                        }
-
                         Console.WriteLine("Press BACKSPACE to go back");
                         cki = Console.ReadKey();
-                    } while (cki.Key is not ((ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.D3
-                             or ConsoleKey.Escape)));
+                    } while (cki.Key != ConsoleKey.Backspace);
                 }
 
                 else
-
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Try again later...");
+                    Console.WriteLine("Try again...");
                     Console.ResetColor();
                     Thread.Sleep(1000);
                     break;
-                }
-            }
-            cki = Console.ReadKey();
-            while (cki.Key != ConsoleKey.Backspace) ;
+                } 
+            } while (cki.Key != ConsoleKey.Backspace) ;
+
         }
     }
 }
