@@ -48,7 +48,8 @@ public class RestaurantFrontend
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("[1]: View sold food boxes [2]: View unsold food boxes [3]: Add a new food box to a restaurant");
+                    Console.WriteLine(
+                        "[1]: View sold food boxes [2]: View unsold food boxes [3]: Add a new food box to a restaurant");
                     cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.Backspace)
                     {
@@ -86,7 +87,8 @@ public class RestaurantFrontend
                         Console.WriteLine("|\tAll restaurants:\t|");
                         var restaurants = AdminBackend.ShowRestaurants();
                         foreach (var r in restaurants)
-                            Console.WriteLine($"| Restaurant: {r.RestaurantName} |\tPhone number: {r.PhoneNumber} |\tCity: {r.City}\t|");
+                            Console.WriteLine(
+                                $"| Restaurant: {r.RestaurantName} |\tPhone number: {r.PhoneNumber} |\tCity: {r.City}\t|");
 
                         Console.WriteLine("|\tEnter a restaurant you want to see sold lunch boxes for:\t|");
                         var restaurant = Console.ReadLine();
@@ -94,7 +96,6 @@ public class RestaurantFrontend
                         var restaurantsList = RestaurantBackend.AllSoldFoodBoxes(restaurant);
                         if (restaurantsList.Count > 0)
                         {
-                            //int i = 0;
                             foreach (var box in restaurantsList)
                             {
                                 Console.WriteLine(
@@ -106,15 +107,45 @@ public class RestaurantFrontend
                         Console.WriteLine("Press BACKSPACE to go back");
                     } while (cki.Key is not ((ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.Escape)));
                 }
+
+                if (cki.Key == ConsoleKey.D2)
+                {
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine("|\tAll restaurants:\t|");
+                            var restaurants = AdminBackend.ShowRestaurants();
+                            foreach (var r in restaurants)
+                                Console.WriteLine(
+                                    $"| Restaurant: {r.RestaurantName} |\tPhone number: {r.PhoneNumber} |\tCity: {r.City}\t|");
+
+                            Console.WriteLine("|\tEnter a restaurant you want to see unsold lunch boxes for:\t|");
+                            var restaurant = Console.ReadLine();
+                            Console.Clear();
+                            var restaurantsList = RestaurantBackend.AllUnsoldFoodBoxes(restaurant);
+                            if (restaurantsList.Count > 0)
+                            {
+                                foreach (var box in restaurantsList)
+                                {
+                                    Console.WriteLine(
+                                        $" | {box.FoodType} \t| {box.FoodBox} \t| {box.Price}kr \t|");
+                                }
+                            }
+
+                            Console.ReadKey();
+                            Console.WriteLine("Press BACKSPACE to go back");
+                        } while (cki.Key is not ((ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.Escape)));
+                }
                 else
                 {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.ResetColor();
-                            Console.WriteLine("Try again later...");
-                            Thread.Sleep(1000);
-                            break;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ResetColor();
+                        Console.WriteLine("Try again later...");
+                        Thread.Sleep(1000);
+                        break;
                 }
-            } while (cki.Key != ConsoleKey.Backspace);
+            }
+            while (cki.Key != ConsoleKey.Backspace) ;
         }
     }
 }

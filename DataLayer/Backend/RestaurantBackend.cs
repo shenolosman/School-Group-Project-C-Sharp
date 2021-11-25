@@ -45,7 +45,38 @@ namespace DataLayer.Backend
             }
             return newList;
         }
-    
+
+        public static List<FoodPackage> AllUnsoldFoodBoxes(string restaurant)
+        {
+            using var ctx = new FoodRescue();
+
+            var query = ctx.FoodPackages.Include(c => c.Orders)
+                .Select(c => new
+                {
+                    PurchaseMade = c.Orders.Count == 0,
+                    Restaurant = c.Restaurant.RestaurantName,
+                    FoodPackage = c.FoodBox,
+                    price = c.Price,
+                    FoodID = c.FoodOrderId
+                })
+                .Where(c => c.Restaurant == restaurant && c.PurchaseMade == true)
+                .ToList();
+
+            List<FoodPackage> newList = new List<FoodPackage>();
+
+            foreach (var item in ctx.FoodPackages)
+            {
+                foreach (var q in query)
+                {
+                    if (q.FoodPackage == item.FoodBox)
+                    {
+                        newList.Add(item);
+                    }
+                }
+            }
+            return newList;
+        }
+
 
         //Lägger till en ny matlåda till en ny restaurang
         public static FoodPackage AddNewFoodBoxesToANewRestaurant(string foodType, string foodBox, int price, DateTime expiryDate, string restaurantName, string phoneNumber, string city)
