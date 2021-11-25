@@ -16,11 +16,13 @@ public class RestaurantFrontend
         foreach (var user in UserList)
         {
             UserNameList.Add(user.Username);
+            UserNameList.Add(user.Password);
         }
 
         while (cki.Key != ConsoleKey.Escape)
         {
             string username = "";
+            string password = "";
             bool loggedin = false;
 
             Console.Clear();
@@ -31,10 +33,21 @@ public class RestaurantFrontend
             Console.Clear();
             Console.Write("Username: ");
             username = Console.ReadLine();
+            
             if (!UserNameList.Contains(username))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("User does not exist...");
+                Console.WriteLine("Username or password was incorrect. Please try again!");
+                Console.ResetColor();
+                Thread.Sleep(1000);
+                break;
+            }
+            Console.Write("Password: ");
+            password = Console.ReadLine();
+            if (!UserNameList.Contains(password))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Username or password was incorrect. Please try again!");
                 Console.ResetColor();
                 Thread.Sleep(1000);
                 break;
