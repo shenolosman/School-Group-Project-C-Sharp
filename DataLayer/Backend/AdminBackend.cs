@@ -66,20 +66,14 @@ namespace DataLayer.Backend
         }
 
         //Visar alla restauranger som finns
-        public static List<object> ShowRestaurants()
+        public static List<Restaurant> ShowRestaurants()
         {
             using var ctx = new FoodRescue();
 
             var query = ctx.Restaurants
-                .Select(c => new
-                    {
-                    Name = c.RestaurantName,
-                    PhoneNr = c.PhoneNumber,
-                    C = c.City
+                .ToList();
 
-                    });
-            var list = new List<object>();
-            foreach (var q in query) list.Add(q);
+            var list = query;
             return list;
         }
 

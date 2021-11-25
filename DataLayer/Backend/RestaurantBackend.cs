@@ -15,7 +15,7 @@ namespace DataLayer.Backend
     {
 
         //Visar alla köpta matlådor för en restaurang, tex "Espresso House"
-        public static List<object> AllSoldFoodBoxes(string restaurant)
+        public static List<FoodPackage> AllSoldFoodBoxes(string restaurant)
         {
             using var ctx = new FoodRescue();
 
@@ -28,12 +28,24 @@ namespace DataLayer.Backend
                     price = c.Price,
                     FoodID = c.FoodOrderId
                 })
-                .Where(c => c.Restaurant == restaurant);
+                .Where(c => c.Restaurant == restaurant && c.PurchaseMade == true)
+                .ToList();
 
-            var list = new List<object>();
-            foreach (var q in query) list.Add(q);
-            return list;
+            List<FoodPackage> newList = new List<FoodPackage>();
+
+            foreach (var item in ctx.FoodPackages)
+            {
+                foreach (var q in query)
+                {
+                    if (q.FoodPackage == item.FoodBox)
+                    {
+                        newList.Add(item);
+                    }
+                }
+            }
+            return newList;
         }
+    
 
         //Lägger till en ny matlåda till en ny restaurang
         public static FoodPackage AddNewFoodBoxesToANewRestaurant(string foodType, string foodBox, int price, DateTime expiryDate, string restaurantName, string phoneNumber, string city)
