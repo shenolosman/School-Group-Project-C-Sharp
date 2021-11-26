@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -66,7 +67,15 @@ namespace BackendTests
 
             Assert.True(purchaseHistory.Find(box => box.FoodBox == "Oxfilepasta") != null);
             Assert.False(purchaseHistory.Find(box => box.FoodBox == "Wrap med grönsaker") != null);
+        }
 
+        //Testar att lägga till ny matlåda till en restaurang
+        [Fact]
+        public void AddFoodBoxTest()
+        {
+            AdminBackend.PrepDatabase();
+            var foodBox = RestaurantBackend.AddNewFoodBoxToAnExistingRestaurant("Gateau", "Vego", "Sallad", 55, DateTime.Now);
+            Assert.NotNull(foodBox);
         }
     }
 }
