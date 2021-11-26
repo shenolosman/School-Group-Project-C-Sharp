@@ -16,7 +16,14 @@ namespace BackendTests
             var users = AdminBackend.AllUsers();
             Assert.True(users.Where(x => x.Equals("KevinJ")) != null);
         }
-
+        //Testing to add new restaurant
+        [Fact]
+        public void AddRestaurantTest()
+        {
+            AdminBackend.PrepDatabase();
+            var restaurant = AdminBackend.AddSpecificRestaurant(restaurantName: "Testsson", city: "TestAndCity", phoneNr: "0730001122");
+            Assert.NotNull(restaurant);
+        }
         //Visar att matlådorna är köpta från Espresso House
         [Fact]
         public void RestaurantTest()
