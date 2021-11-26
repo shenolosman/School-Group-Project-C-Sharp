@@ -8,6 +8,14 @@ namespace BackendTests
 {
     public class FoodRescueTests
     {
+        //Testing to list all users
+        [Fact]
+        public void AllUsers()
+        {
+            AdminBackend.PrepDatabase();
+            var user = AdminBackend.AllUsers();
+            Assert.NotEmpty(user);
+        }
         //Testing if user exits
         [Fact]
         public void UserTest()
@@ -15,6 +23,14 @@ namespace BackendTests
             AdminBackend.PrepDatabase();
             var users = AdminBackend.AllUsers();
             Assert.True(users.Where(x => x.Equals("KevinJ")) != null);
+        }
+        //Testing to list all restaurants
+        [Fact]
+        public void AllRestaurants()
+        {
+            AdminBackend.PrepDatabase();
+            var restaurant = AdminBackend.ShowRestaurants();
+            Assert.NotEmpty(restaurant);
         }
         //Testing to add new restaurant
         [Fact]
@@ -24,6 +40,7 @@ namespace BackendTests
             var restaurant = AdminBackend.AddSpecificRestaurant(restaurantName: "Testsson", city: "TestAndCity", phoneNr: "0730001122");
             Assert.NotNull(restaurant);
         }
+      
         //Visar att matlådorna är köpta från Espresso House
         [Fact]
         public void RestaurantTest()
