@@ -31,7 +31,7 @@ namespace DataLayer.Backend
 
             var query = ctx
                 .Users
-                .ToList();
+                .OrderBy(x=>x.Username).ToList();
 
             var list = query;
             return list;
@@ -71,7 +71,7 @@ namespace DataLayer.Backend
             using var ctx = new FoodRescue();
 
             var query = ctx.Restaurants
-                .ToList();
+                .OrderBy(x=>x.RestaurantName).ToList();
 
             var list = query;
             return list;

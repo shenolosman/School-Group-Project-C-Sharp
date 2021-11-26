@@ -1,7 +1,7 @@
 using DataLayer.Backend;
 using FoodRescue_Projekt;
 
-AdminBackend.PrepDatabase(); //Detta kan raderas sedan.
+AdminBackend.PrepDatabase();
 
 ConsoleKeyInfo cki = default;
 void Menu()
