@@ -1,13 +1,8 @@
-﻿using DataLayer;
-using DataLayer.Backend;
-
+﻿using DataLayer.Backend;
 namespace FoodRescue_Projekt;
-
 public class RestaurantFrontend
 {
-
     private ConsoleKeyInfo cki;
-
     public void Restaurant()
     {
         var UserList = AdminBackend.AllUsers();
@@ -18,7 +13,6 @@ public class RestaurantFrontend
             UserNameList.Add(user.Username);
             UserNameList.Add(user.Password);
         }
-
         while (cki.Key != ConsoleKey.Escape)
         {
             string username = "";
@@ -52,7 +46,6 @@ public class RestaurantFrontend
                 Thread.Sleep(1000);
                 break;
             }
-
             loggedin = UserNameList.Contains(username);
 
             while (loggedin)
@@ -62,7 +55,7 @@ public class RestaurantFrontend
                 {
                     Console.Clear();
                     Console.WriteLine(
-                        "[1]: View sold food boxes [2]: View unsold food boxes [3]: Add a new food box to a restaurant");
+                        "[1]: View sold food boxes \n[2]: View unsold food boxes \n[3]: Add a new food box to a restaurant");
                     cki = Console.ReadKey();
                     if (cki.Key == ConsoleKey.Backspace)
                     {
@@ -89,7 +82,6 @@ public class RestaurantFrontend
                         break;
                     }
                 } while (cki.Key is not (ConsoleKey.D1 or ConsoleKey.D2 or ConsoleKey.D3 or ConsoleKey.Escape));
-
                 if (cki.Key == ConsoleKey.D1)
                 {
                     do
@@ -114,12 +106,10 @@ public class RestaurantFrontend
                                     $" | {box.FoodType} \t| {box.FoodBox} \t| {box.Price}kr \t|");
                             }
                         }
-
                         Console.WriteLine("Press BACKSPACE to go back");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
-
                 if (cki.Key == ConsoleKey.D2)
                 {
                     do
@@ -142,13 +132,11 @@ public class RestaurantFrontend
                                 Console.WriteLine(
                                     $" | {box.FoodType} \t| {box.FoodBox} \t| {box.Price}kr \t|");
                             }
-
                             Console.WriteLine("Press BACKSPACE to go back");
                             cki = Console.ReadKey();
                         }
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
-
                 if (cki.Key == ConsoleKey.D3)
                 {
                     do
@@ -159,43 +147,39 @@ public class RestaurantFrontend
                         foreach (var r in restaurants)
                             Console.WriteLine(
                                 $"| Restaurant: {r.RestaurantName}, Phone number: {r.PhoneNumber}, City: {r.City}|");
-
-                        Console.WriteLine("\n\tEnter a restaurant you want to add a new lunch box to:\t");
+                        Console.Write("\n\tEnter a restaurant you want to add a new lunch box to:\t");
                         var restaurant = Console.ReadLine();
-                        Console.WriteLine("\tEnter food type for the food box [Fisk/Kött/Vego]:\t");
+                        Console.Write("\tEnter food type for the food box [Fisk/Kött/Vego]:\t");
                         var foodType = Console.ReadLine();
-                        Console.WriteLine("\tEnter dish for the food box:\t");
+                        Console.Write("\tEnter dish for the food box:\t");
                         var foodBox = Console.ReadLine();
-                        Console.WriteLine("\tEnter price for the food box:\t");
-                        var price = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("\tEnter expiry date for the food box:\t");
-                        var expiryDate = Convert.ToDateTime(Console.ReadLine());
-
-                        Console.Clear();
-
-                        var newFoodBoxAdded =
-                            RestaurantBackend.AddNewFoodBoxToAnExistingRestaurant(restaurant, foodType, foodBox,
-                                price, expiryDate);
-
-                        if (newFoodBoxAdded != null)
+                        Console.Write("\tEnter price for the food box:\t");
+                        var price = Console.ReadLine();
+                        Console.Write("\tEnter expiry date for the food box:\t");
+                        var expiryDate = Console.ReadLine();
+                        if (!(string.IsNullOrWhiteSpace(restaurant) && string.IsNullOrWhiteSpace(foodType) && string.IsNullOrWhiteSpace(foodBox) && string.IsNullOrWhiteSpace(price) && string.IsNullOrWhiteSpace(expiryDate)))
                         {
-                            Console.WriteLine("New food box was added to the restaurant");
+                            var date=Convert.ToDateTime(expiryDate);
+                            var prices = Convert.ToInt32(price);
+                            var newFoodBoxAdded =
+                                RestaurantBackend.AddNewFoodBoxToAnExistingRestaurant(restaurant, foodType, foodBox, prices, date);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n\tNew food box was added to the restaurant");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n\tYou couldnt add! Please try again...");
+                            Console.ResetColor();
+                            Thread.Sleep(3000);
+                            break;
                         }
                         Console.WriteLine("Press BACKSPACE to go back");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
-
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Try again...");
-                    Console.ResetColor();
-                    Thread.Sleep(1000);
-                    break;
-                } 
-            } while (cki.Key != ConsoleKey.Backspace) ;
-
+            }
         }
     }
 }
