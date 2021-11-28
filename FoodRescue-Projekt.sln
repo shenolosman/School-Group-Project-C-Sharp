@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodRescue-Projekt", "FoodRescue-Projekt\FoodRescue-Projekt.csproj", "{4DF1D466-F2CF-40CB-8398-3A7FD886CC60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodRescue-Projekt", "FoodRescue-Projekt\FoodRescue-Projekt.csproj", "{4DF1D466-F2CF-40CB-8398-3A7FD886CC60}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{71A4CBF9-1E0B-4758-A637-016E38E55AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendTests", "BackendTests\BackendTests.csproj", "{8734C628-E95E-4DB0-B883-4E194F7E7C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendTests", "BackendTests\BackendTests.csproj", "{8734C628-E95E-4DB0-B883-4E194F7E7C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projekt-Rapporter", "Projekt-Rapporter", "{9A9F66BD-587A-41F2-8D0B-BCF8730093D9}"
+	ProjectSection(SolutionItems) = preProject
+		HannaHansson.md = HannaHansson.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
