@@ -5,7 +5,8 @@ public class RestaurantFrontend
     private ConsoleKeyInfo cki;
     public void Restaurant()
     {
-        var UserList = AdminBackend.AllUsers();
+        //Kajsa och Sandra är servitriser 
+        var UserList = AdminBackend.AllUsers().Where(s => s.IsWaitress == true);
         var UserNameList = new List<string>();
 
         foreach (var user in UserList)

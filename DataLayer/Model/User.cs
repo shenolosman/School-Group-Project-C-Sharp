@@ -16,6 +16,8 @@ namespace DataLayer
         [Required]
         public string EmailAddress { get; set; }
         [Required] public bool IsAdmin { get; set; }
+        [Required] public bool IsWaitress { get; set; }
+
         public ICollection<Order> Orders { get; set; }
     }
 }

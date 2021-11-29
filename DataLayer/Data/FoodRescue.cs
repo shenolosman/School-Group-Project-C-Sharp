@@ -50,12 +50,12 @@ namespace DataLayer.Data
 
             var users = new User[]
             {
-                new() {Username = "KevinJ", Password = "Pass123", EmailAddress = "john@gmail.com",IsAdmin = false},
-                new() {Username = "Hanna", Password = "Hund", EmailAddress = "joh@gmail.com",IsAdmin = true},
-                new() {Username = "Kajsa", Password = "Katt", EmailAddress = "Kajsa@hotmail.com",IsAdmin = false},
-                new() {Username = "Emmy", Password = "Password", EmailAddress = "EmmyP@gmail.com",IsAdmin = false},
-                new() {Username = "Klara", Password = "SweetCat", EmailAddress = "Klara@utb.ecutbildning.se",IsAdmin = false},
-                new() {Username = "Sandra", Password = "Pass123", EmailAddress = "Sandras@gmail.com",IsAdmin = false},
+                new() {Username = "KevinJ", Password = "Pass123", EmailAddress = "john@gmail.com",IsAdmin = false, IsWaitress = false},
+                new() {Username = "Hanna", Password = "Hund", EmailAddress = "joh@gmail.com",IsAdmin = true, IsWaitress = false},
+                new() {Username = "Kajsa", Password = "Katt", EmailAddress = "Kajsa@hotmail.com",IsAdmin = false, IsWaitress = true},
+                new() {Username = "Emmy", Password = "Password", EmailAddress = "EmmyP@gmail.com",IsAdmin = false, IsWaitress = false},
+                new() {Username = "Klara", Password = "SweetCat", EmailAddress = "Klara@utb.ecutbildning.se",IsAdmin = false, IsWaitress = false},
+                new() {Username = "Sandra", Password = "Pass123", EmailAddress = "Sandras@gmail.com",IsAdmin = false, IsWaitress = true},
             };
 
             ctx.Users.AddRange(users);
