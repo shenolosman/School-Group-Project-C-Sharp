@@ -127,18 +127,18 @@ public class AdminFrontend
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("Here we create new restaurant!");
-                        Console.Write("Please enter restaurant name:");
+                        Console.WriteLine("Here we create a new restaurant:");
+                        Console.Write("Please enter restaurant name: ");
                         var restaurantName = Console.ReadLine();
-                        Console.Write("Please enter phone nummer:");
+                        Console.Write("Please enter phone number: ");
                         var phoneNr = Console.ReadLine();
-                        Console.Write("Please enter city:");
+                        Console.Write("Please enter city: ");
                         var city = Console.ReadLine();
                         if (!(string.IsNullOrWhiteSpace(restaurantName) && string.IsNullOrWhiteSpace(restaurantName) && string.IsNullOrWhiteSpace(restaurantName)))
                         {
                             AdminBackend.AddSpecificRestaurant(restaurantName, phoneNr, city);
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\n\tNew food box was added to the restaurant");
+                            Console.WriteLine("\n\tThe new restaurant was added!");
                             Console.ResetColor();
                         }
                         else
@@ -149,8 +149,8 @@ public class AdminFrontend
                             Thread.Sleep(3000);
                             break;
                         }
-                        Console.WriteLine("\nPress any button to add new restaurant!\nor\n");
-                        Console.WriteLine("Press BACKSPACE to go back");
+                        Console.WriteLine("\nPress any button to add new restaurant or");
+                        Console.WriteLine("Press BACKSPACE to go back!");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
