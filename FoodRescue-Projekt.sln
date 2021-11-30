@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projekt-Rapporter", "Projekt-Rapporter", "{9A9F66BD-587A-41F2-8D0B-BCF8730093D9}"
 	ProjectSection(SolutionItems) = preProject
 		HannaHansson.md = HannaHansson.md
+		ShenolOsman.md = ShenolOsman.md
 	EndProjectSection
 EndProject
 Global

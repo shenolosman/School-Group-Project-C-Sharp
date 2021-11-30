@@ -11,12 +11,12 @@ namespace BackendTests
 {
     public class CustomerClientTests
     {
-       public AdminBackend adminBackend = new AdminBackend();
+      //public AdminBackend adminBackend = new AdminBackend();
 
         [Fact]
         public void ClientFrontendTest()
         {
-            adminBackend.PrepDatabase();
+            AdminBackend.PrepDatabase();
 
             var UserList = AdminBackend.AllUsers();
             var UserNameList = new List<string>();

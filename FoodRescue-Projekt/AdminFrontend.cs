@@ -118,7 +118,6 @@ public class AdminFrontend
                                 $"{i}. |Restaurant name: {restaurant.RestaurantName}, city: {restaurant.City} and phone: {restaurant.PhoneNumber}|");
                             i++;
                         }
-
                         Console.WriteLine("\nPress BACKSPACE to go back");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
@@ -135,17 +134,20 @@ public class AdminFrontend
                         var phoneNr = Console.ReadLine();
                         Console.Write("Please enter city:");
                         var city = Console.ReadLine();
-                        if (!string.IsNullOrWhiteSpace(restaurantName) && !string.IsNullOrWhiteSpace(restaurantName) && !string.IsNullOrWhiteSpace(restaurantName))
+                        if (!(string.IsNullOrWhiteSpace(restaurantName) && string.IsNullOrWhiteSpace(restaurantName) && string.IsNullOrWhiteSpace(restaurantName)))
                         {
-                            var add = AdminBackend.AddSpecificRestaurant(restaurantName, phoneNr, city);
-                            if (add != null)
-                            {
-                                Console.WriteLine("\nYou have created new restaurant");
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nOoops! Something went wrong! Please try again!");
-                            }
+                            AdminBackend.AddSpecificRestaurant(restaurantName, phoneNr, city);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n\tNew food box was added to the restaurant");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n\tYou couldnt add! Please try again...");
+                            Console.ResetColor();
+                            Thread.Sleep(3000);
+                            break;
                         }
                         Console.WriteLine("\nPress any button to add new restaurant!\nor\n");
                         Console.WriteLine("Press BACKSPACE to go back");

@@ -28,42 +28,12 @@ namespace DataLayer.Backend
         public static List<User> AllUsers()
         {
             using var ctx = new FoodRescue();
-
             var query = ctx
                 .Users
-                .OrderBy(x=>x.Username).ToList();
-
-            var list = query;
-            return list;
+                .OrderBy(x=>x.Username);
+            return query.ToList();
         }
 
-        //Raderar/bannar användare, både med och utan order
-        public static User DeleteUsers(string username)
-        {
-            using var ctx = new FoodRescue();
-
-            var user = ctx.Users.Find(username);
-            var orders = ctx.Orders.Where(a => a.User.Username == username).ToList();
-            orders.ForEach(a => a.User = null);
-            ctx.Users.Remove(user);
-            ctx.SaveChanges();
-
-            return user;
-        }
-
-        //Lägger till en ny användare
-        public static User AddUser(string username, string password, string email)
-        {
-            using var ctx = new FoodRescue();
-
-            var user = new User()
-                {Username = username, Password = password, EmailAddress = email};
-            ctx.Users.Add(user);
-
-            ctx.SaveChanges();
-
-            return user;
-        }
 
         //Visar alla restauranger som finns
         public static List<Restaurant> ShowRestaurants()
