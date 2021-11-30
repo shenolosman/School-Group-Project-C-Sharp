@@ -16,20 +16,19 @@ namespace BackendTests
         [Fact]
         public void ClientFrontendTest()
         {
-
             adminBackend.PrepDatabase();
 
             var UserList = AdminBackend.AllUsers();
             var UserNameList = new List<string>();
             string username = "Emmy";
-            bool loggedin;
+
             foreach (var user in UserList)
             {
                 UserNameList.Add(user.Username);
             }
-            loggedin = UserNameList.Contains(username);
+
+            bool loggedin = UserNameList.Contains(username);
             Assert.True(loggedin);
         }
-        
     }
 }
