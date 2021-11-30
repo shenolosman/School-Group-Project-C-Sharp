@@ -21,7 +21,7 @@ namespace BackendTests
 
             var UserList = AdminBackend.AllUsers();
             var UserNameList = new List<string>();
-            string username = "User";
+            string username = "Emmy";
             bool loggedin;
             foreach (var user in UserList)
             {
