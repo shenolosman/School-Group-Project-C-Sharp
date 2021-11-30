@@ -58,8 +58,7 @@ namespace DataLayer.Data
                 new() {Username = "Sandra", Password = "Pass123", EmailAddress = "Sandras@gmail.com",IsAdmin = false, IsWaitress = true},
             };
 
-            ctx.Users.AddRange(users);
-            ctx.SaveChanges();
+            ctx.AddRange(users);
 
 
             var restaurants = new Restaurant[]
@@ -70,8 +69,7 @@ namespace DataLayer.Data
                 new() {RestaurantName = "Gateau", PhoneNumber = "076-534 65 00", City = "Malmö"},
                 new() {RestaurantName = "Max", PhoneNumber = "076-298 33 55", City = "Halmstad"},
             };
-            ctx.Restaurants.AddRange(restaurants);
-            ctx.SaveChanges();
+            ctx.AddRange(restaurants);
 
             var foodPackages = new FoodPackage[]
             {
@@ -123,8 +121,7 @@ namespace DataLayer.Data
                 },
 
             };
-            ctx.FoodPackages.AddRange(foodPackages);
-            ctx.SaveChanges();
+            ctx.AddRange(foodPackages);
 
 
             var orders = new Order[]
@@ -135,8 +132,7 @@ namespace DataLayer.Data
                 new() {OrderDate = DateTime.Now, User = users[2], FoodPackage = foodPackages[3]},
                 new() {OrderDate = DateTime.Now, User = users[3], FoodPackage = foodPackages[5]},
             };
-            ctx.Orders.AddRange(orders);
-            ctx.SaveChanges();
+            ctx.AddRange(orders);
             ctx.SaveChanges();
         }
     }

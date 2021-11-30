@@ -32,7 +32,7 @@ public class RestaurantFrontend
             if (!UserNameList.Contains(username))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Username or password was incorrect. Please try again!");
+                Console.WriteLine("User is not service personal. Please try again!");
                 Console.ResetColor();
                 Thread.Sleep(1000);
                 break;
@@ -42,7 +42,7 @@ public class RestaurantFrontend
             if (!UserNameList.Contains(password))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Username or password was incorrect. Please try again!");
+                Console.WriteLine("User is not service personal. Please try again!");
                 Console.ResetColor();
                 Thread.Sleep(1000);
                 break;
@@ -107,6 +107,13 @@ public class RestaurantFrontend
                                     $" | {box.FoodType} \t| {box.FoodBox} \t| {box.Price}kr \t|");
                             }
                         }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n\tNot sold lunch boxes yet!!...");
+                            Console.ResetColor();
+                            
+                        }
                         Console.WriteLine("Press BACKSPACE to go back");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
@@ -135,6 +142,13 @@ public class RestaurantFrontend
                             }
                             Console.WriteLine("Press BACKSPACE to go back");
                             cki = Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n\nLunch boxes sold!!...");
+                            Console.ResetColor();
+                            
                         }
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
