@@ -6,19 +6,19 @@ public class RestaurantFrontend
     public void Restaurant()
     {
         //Kajsa och Sandra är servitriser 
-        var UserList = AdminBackend.AllUsers().Where(s => s.IsWaitress == true);
-        var UserNameList = new List<string>();
+        var userList = AdminBackend.AllUsers().Where(s => s.IsWaitress == true);
+        var userNameList = new List<string>();
 
-        foreach (var user in UserList)
+        foreach (var user in userList)
         {
-            UserNameList.Add(user.Username);
-            UserNameList.Add(user.Password);
+            userNameList.Add(user.Username);
+            userNameList.Add(user.Password);
         }
         while (cki.Key != ConsoleKey.Escape)
         {
             string username = "";
             string password = "";
-            bool loggedin = false;
+            bool loggedIn = false;
 
             Console.Clear();
             Console.WriteLine("Press any key to login");
@@ -29,7 +29,7 @@ public class RestaurantFrontend
             Console.Write("Username: ");
             username = Console.ReadLine();
             
-            if (!UserNameList.Contains(username))
+            if (!userNameList.Contains(username))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User is not service personal. Please try again!");
@@ -39,7 +39,7 @@ public class RestaurantFrontend
             }
             Console.Write("Password: ");
             password = Console.ReadLine();
-            if (!UserNameList.Contains(password))
+            if (!userNameList.Contains(password))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User is not service personal. Please try again!");
@@ -47,9 +47,9 @@ public class RestaurantFrontend
                 Thread.Sleep(1000);
                 break;
             }
-            loggedin = UserNameList.Contains(username);
+            loggedIn = userNameList.Contains(username);
 
-            while (loggedin)
+            while (loggedIn)
             {
                 Console.Clear();
                 do
@@ -64,21 +64,21 @@ public class RestaurantFrontend
                         {
                             Console.Clear();
                             Console.WriteLine("Are you sure you want to log out?[Y/N]");
-                            var choise = Console.ReadKey();
-                            if (choise.Key == ConsoleKey.Y)
+                            var choice = Console.ReadKey();
+                            if (choice.Key == ConsoleKey.Y)
                             {
-                                loggedin = false;
+                                loggedIn = false;
                                 username = "";
                                 break;
                             }
 
-                            if (choise.Key == ConsoleKey.N)
+                            if (choice.Key == ConsoleKey.N)
                             {
                                 break;
                             }
                         } while (true);
                     }
-                    if (loggedin == false)
+                    if (loggedIn == false)
                     {
                         break;
                     }
@@ -110,7 +110,7 @@ public class RestaurantFrontend
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\n\tNot sold lunch boxes yet!!...");
+                            Console.WriteLine("\nThe restaurant has no sold food boxes yet!!...");
                             Console.ResetColor();
                             
                         }
@@ -146,9 +146,11 @@ public class RestaurantFrontend
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\n\nLunch boxes sold!!...");
+                            Console.WriteLine("\n\nNo unsold lunch boxes available for this restaurant!!...");
                             Console.ResetColor();
-                            
+
+                            Console.WriteLine("Press BACKSPACE to go back");
+                            cki = Console.ReadKey();
                         }
                     } while (cki.Key != ConsoleKey.Backspace);
                 }
@@ -157,7 +159,7 @@ public class RestaurantFrontend
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine("\t\t\tAll restaurants:     \t");
+                        Console.WriteLine("\t\t\tAll restaurants:\t");
                         var restaurants = AdminBackend.ShowRestaurants();
                         foreach (var r in restaurants)
                             Console.WriteLine(
@@ -179,18 +181,18 @@ public class RestaurantFrontend
                             var newFoodBoxAdded =
                                 RestaurantBackend.AddNewFoodBoxToAnExistingRestaurant(restaurant, foodType, foodBox, prices, date);
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("\n\tNew food box was added to the restaurant");
+                            Console.WriteLine($"\n\tNew food box was added to {newFoodBoxAdded.RestaurantName}");
                             Console.ResetColor();
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\n\tYou couldnt add! Please try again...");
+                            Console.WriteLine("\n\tYou were not able to add a new food box! Please try again...");
                             Console.ResetColor();
                             Thread.Sleep(3000);
                             break;
                         }
-                        Console.WriteLine("Press BACKSPACE to go back");
+                        Console.WriteLine("\tPress BACKSPACE to go back");
                         cki = Console.ReadKey();
                     } while (cki.Key != ConsoleKey.Backspace);
                 }

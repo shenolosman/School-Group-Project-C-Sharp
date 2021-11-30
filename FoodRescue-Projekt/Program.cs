@@ -31,8 +31,8 @@ void Menu()
                 do
                 {
                     Console.Clear();
-                    var restaurantfrontent = new RestaurantFrontend();
-                    restaurantfrontent.Restaurant();
+                    var restaurantFrontend = new RestaurantFrontend();
+                    restaurantFrontend.Restaurant();
                     Console.WriteLine("Press BACKSPACE to go back");
                     cki = Console.ReadKey();
                 } while (cki.Key != ConsoleKey.Backspace);
