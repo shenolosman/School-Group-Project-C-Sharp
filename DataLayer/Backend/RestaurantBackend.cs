@@ -53,13 +53,13 @@ namespace DataLayer.Backend
             var query = ctx.FoodPackages.Include(c => c.Orders)
                 .Select(c => new
                 {
-                    PurchaseMade = c.Orders.Count == 0,
+                    PurchaseNotMade = c.Orders.Count == 0,
                     Restaurant = c.Restaurant.RestaurantName,
                     FoodPackage = c.FoodBox,
                     price = c.Price,
                     FoodID = c.FoodOrderId
                 })
-                .Where(c => c.Restaurant == restaurant && c.PurchaseMade == true)
+                .Where(c => c.Restaurant == restaurant && c.PurchaseNotMade == true)
                 .ToList();
 
             List<FoodPackage> newList = new List<FoodPackage>();
