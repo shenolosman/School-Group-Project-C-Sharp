@@ -1,7 +1,3 @@
-> Efter genomförd kurs ska den studerande ha kompetens för att:
->
-> 10. Genomföra modellering, normalisering samt implementation av lösning i SQL-server för att lagra applikationsdata
-
 # Projektuppgift
 
 Ni kommer att jobba tillsammans i grupper om 3-4. Varje person i gruppen ska bidra med commits.
@@ -72,49 +68,3 @@ Om ni är 4 i gruppen så skulle den fjärde personen kunna sitta med detta. Man
 
 Bygg gärna något inloggningssystem via databasen om ni har tid över.
 Användarnamn och lösen kan lagras för alla användare i customertabellen till exempel.
-
-Både vanliga användare, resturanganställda och administratörer kan alla ligga som records
-i customertabellen. Resturangtabellen behöver bara en extra kolumn för vilket/vilka
-customerkonton som tillhör resturangen.
-
-### G krav (grupparbete):
-
-- Varje person i gruppen har synligt medverkat och committat
-
-- "CustomerClient":
-  - en klient som kan göra som ovan beskrivet
-- "RestaurantClient"
-  - en klient som kan göra som ovan beskrivet
-- "AdminClient"
-
-  - en klient som kan göra som ovan beskrivet
-
-- Varje person har skrivit ett test var som testar någon hjälpmetod i backend
-
-### G krav (individuell rapport)
-
-- Skriv ner rapporten i en markdownfil `[ditt namn].md` i projektet
-- Använd rubriker, underrubriker och styckesindelning
-- Reflektera över och analysera projektet
-  - Hur gick planeringen? Varför? Vad kan göras bättre?
-  - Hur gick implementeringen? Motivera lösningar/beslut. Vad kan göras bättre?
-  - Vad blev du mest nöjd med och varför?
-
-### Deadline:
-
-1. Projekt zip senast Söndag 05/12-21 kl 23.55, Rapport senast Måndag 06/12-21 kl 23.55
-2. Projekt zip senast Söndag 19/12-21 kl 23.55, Rapport senast Måndag 20/12-21 kl 23.55
-
-### Inlämning (per person)
-
-Varje person i gruppen lämnar själv in allt nedan på PingPong
-
-- PingPong under "Projektuppgift":
-
-  - En zip av repon
-  - Länk till repo (skicka inbjudan till Björn S)
-
-- PingPong under "Projektrappport":
-
-  - Rapporten (markdown, markdown exporterad till pdf)
-  - Länk till repo (skicka inbjudan till Björn S)
